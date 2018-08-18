@@ -8,6 +8,7 @@ public class Window extends JFrame {
 	
 	private InputPanel inputPanel;
 	private RandomGeneratorPanel generatorPanel;
+	private SortSettings sortSettingsPanel;
 	
 	public Window() {
 		// Basic window settings
@@ -21,6 +22,10 @@ public class Window extends JFrame {
 		
 		generatorPanel = new RandomGeneratorPanel();
 		add(generatorPanel, BorderLayout.WEST);
+		
+		sortSettingsPanel = new SortSettings(this);
+		add(sortSettingsPanel, BorderLayout.EAST);
+		
 		pack();
 	}
 	
