@@ -33,10 +33,10 @@ public class SortSettings extends JPanel{
 		setVisible(true);
 		setLayout(new GridLayout(5,5));
 		
-		labInOrder = new JLabel("In order");
-		labRandomOrder = new JLabel("Random Order");
-		labReverseOrder = new JLabel("Reverse Order");
-		labPercent = new JLabel("% Disorder");
+		labInOrder = new JLabel("In order     ");
+		labRandomOrder = new JLabel("Random Order     ");
+		labReverseOrder = new JLabel("Reverse Order    ");
+		labPercent = new JLabel("% Disorder    ");
 		labSort =  new JLabel("Sort");
 		
 		checkInOrder = new Checkbox();
