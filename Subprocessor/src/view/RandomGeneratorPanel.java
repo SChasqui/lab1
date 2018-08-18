@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Checkbox;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -19,13 +20,38 @@ public class RandomGeneratorPanel extends JPanel {
 	private JTextField txtMinNumber;
 	private JLabel generate;
 	private JButton btGenerate;
+	private JPanel auxLeftPanel;
+	private JPanel auxRightPanel;
+	
+	private JLabel labInOrder;
+	private JLabel labRandomOrder;
+	private JLabel labReverseOrder;
+	private JLabel labPercent;
+	private JLabel labSort;
+	
+	private Checkbox checkInOrder;
+	private Checkbox checkRandom;
+	private Checkbox checkReverse;
+	private JTextField txtPercent;
+	
+	private JButton bSort;
 	
 	public RandomGeneratorPanel() {
-		// Basic panel settings
-		setLayout(new GridLayout( 5 , 2 ));
-		setBorder(BorderFactory.createTitledBorder("Random Generator"));
 		
-		// Elements initialization
+		//Main panel
+		setLayout(new GridLayout(1, 2));
+		
+		//Auxiliar left panel init
+		auxLeftPanel = new JPanel();
+		
+		//Auxiliar right panel init
+		auxRightPanel = new JPanel();
+		
+		// Basic panel settings
+		auxLeftPanel.setLayout(new GridLayout( 5 , 2 ));
+		auxLeftPanel.setBorder(BorderFactory.createTitledBorder("Random Generator"));
+		
+		// LeftPanel Elements initialization
 		numberOfElements = new JLabel("Number of elements");
 		txtNumberOfElements = new JTextField();
 		maxNumber = new JLabel("Max Number");
@@ -35,17 +61,48 @@ public class RandomGeneratorPanel extends JPanel {
 		generate = new JLabel("Generate");
 		btGenerate = new JButton(new ImageIcon("Data/start.png"));
 		
-		// Add Elements
-		add(numberOfElements);
-		add(txtNumberOfElements);
-		add(maxNumber);
-		add(txtMaxNumber);
-		add(minNumber);
-		add(txtMinNumber);
-		add(numberOfElements);
-		add(txtNumberOfElements);
-		add(generate);
-		add(btGenerate);
+		
+		// Add Elements to left Panel
+		auxLeftPanel.add(numberOfElements);
+		auxLeftPanel.add(txtNumberOfElements);
+		auxLeftPanel.add(maxNumber);
+		auxLeftPanel.add(txtMaxNumber);
+		auxLeftPanel.add(minNumber);
+		auxLeftPanel.add(txtMinNumber);
+		auxLeftPanel.add(numberOfElements);
+		auxLeftPanel.add(txtNumberOfElements);
+		auxLeftPanel.add(generate);
+		auxLeftPanel.add(btGenerate);
+		
+		
+		labInOrder = new JLabel("In order     ");
+		labRandomOrder = new JLabel("Random Order     ");
+		labReverseOrder = new JLabel("Reverse Order    ");
+		labPercent = new JLabel("% Disorder    ");
+		labSort =  new JLabel("Sort");
+		
+		checkInOrder = new Checkbox();
+		checkRandom = new Checkbox();
+		checkReverse = new Checkbox();
+		
+		txtPercent =  new JTextField();
+		
+		bSort =  new JButton("PLAY");
+		
+		auxRightPanel.add(labInOrder);
+		auxRightPanel.add(checkInOrder);
+		auxRightPanel.add(labRandomOrder);
+		auxRightPanel.add(checkRandom);
+		auxRightPanel.add(labReverseOrder);
+		auxRightPanel.add(checkReverse);
+		auxRightPanel.add(labPercent);
+		auxRightPanel.add(txtPercent);
+		auxRightPanel.add(labSort);
+		auxRightPanel.add(bSort);
+		auxRightPanel.setBorder(BorderFactory.createTitledBorder("Sort Settings"));
+	
+		add(auxLeftPanel);
+		add(auxRightPanel);
 	}
 
 }
