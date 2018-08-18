@@ -31,10 +31,15 @@ public class InputPanel extends JPanel{
 	
 
 	public InputPanel() {
+		// Basic panel settings
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createTitledBorder("Input"));
+		
+		// make the panels
 		fillSubPanelIn();
 		fillSubPanelOut();
+		
+		// add the panels
 		add(subPanelIn, BorderLayout.WEST);
 		add(subPanelOut, BorderLayout.CENTER);
 	}
