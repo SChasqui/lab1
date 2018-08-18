@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Window extends JFrame {
 	
+	private JPanel auxiliarPanel;
 	private InputPanel inputPanel;
 	private RandomGeneratorPanel generatorPanel;
 	private SortSettings sortSettingsPanel;
@@ -16,15 +19,21 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
-		
 		inputPanel = new InputPanel();
+		generatorPanel = new RandomGeneratorPanel();
+		sortSettingsPanel = new SortSettings(this);
+		
+		//Add elements
+		
 		add(inputPanel,BorderLayout.NORTH);
 		
-		generatorPanel = new RandomGeneratorPanel();
-		add(generatorPanel, BorderLayout.WEST);
+		auxiliarPanel = new JPanel();
+		auxiliarPanel.setLayout(new GridLayout(1, 2));
 		
-		sortSettingsPanel = new SortSettings(this);
-		add(sortSettingsPanel, BorderLayout.EAST);
+		auxiliarPanel.add(generatorPanel);
+		auxiliarPanel.add(sortSettingsPanel);
+		
+		add(auxiliarPanel, BorderLayout.CENTER);
 		
 		pack();
 	}
