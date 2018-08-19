@@ -1,19 +1,21 @@
 package view;
 
-import java.awt.Checkbox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class RandomGeneratorPanel extends JPanel implements ActionListener{
+public class RandomGeneratorPanel extends JPanel implements ActionListener, ItemListener{
 	
 	private JLabel numberOfElements;
 	private JTextField txtNumberOfElements;
@@ -33,9 +35,9 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 	private JLabel labPercent;
 	
 	// CheckBox
-	private Checkbox checkInOrder;
-	private Checkbox checkRandom;
-	private Checkbox checkReverse;
+	private JCheckBox checkInOrder;
+	private JCheckBox checkRandom;
+	private JCheckBox checkReverse;
 	
 	// TextField
 	private JTextField txtPercent;
@@ -90,11 +92,15 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 		labReverseOrder = new JLabel("Reverse Order");
 		labPercent = new JLabel("% Disorder");
 		
-		checkInOrder = new Checkbox();
-		checkRandom = new Checkbox();
-		checkReverse = new Checkbox();
+		checkInOrder = new JCheckBox("                  (you can only select one)");
+		checkInOrder.addItemListener(this);
+		checkRandom = new JCheckBox("                  (you can only select one)");
+		checkRandom.addItemListener(this);
+		checkReverse = new JCheckBox("                  (you can only select one)");
+		checkReverse.addItemListener(this);
 		
 		txtPercent =  new JTextField();
+
 		
 		// Add Elements to Right Panel
 		auxRightPanel.add(labInOrder);
@@ -112,6 +118,25 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		if (checkInOrder.isSelected()) {
+			
+		}
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent event) {
+		boolean inOrder = checkInOrder.isSelected();
+		boolean random = checkRandom.isSelected();
+		boolean reverse = checkReverse.isSelected();
+		
+		if (!(   (inOrder & !random && ! reverse) 
+			|| (!inOrder && random && !reverse)
+			|| (!inOrder && !random && reverse)
+			)) {
+			checkInOrder.setSelected(false);
+			checkRandom.setSelected(false);
+			checkReverse.setSelected(false);
+		}
 		
 	}
 
