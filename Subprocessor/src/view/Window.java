@@ -74,4 +74,8 @@ public class Window extends JFrame {
 		return inputPanel.isFloat();
 	}
 
+	public void sortIntInput(int[] a) {
+		array.chooseIntAlgorithm(a);
+	}
+
 }

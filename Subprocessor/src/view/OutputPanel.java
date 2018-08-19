@@ -126,7 +126,9 @@ public class OutputPanel extends JPanel implements ActionListener{
 			if(window.isActualFloat()) {
 				paintArrayD(window.getOutArrayD());
 			}else {
+				window.sortIntInput(window.getInArrayI());
 				paintArrayI(window.getOutArrayI());
+				
 			}
 		}else if(command.equals(LEFT)) {
 			if (mark > 0) {

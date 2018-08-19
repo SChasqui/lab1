@@ -64,25 +64,20 @@ public class Array {
     }
     
     
-    public void chooseAlgorithm(Object[] a, boolean isInt) {
-    	if(isInt) {
+    public void chooseIntAlgorithm(int[] a) {
+    	
+    	if(a.length <= 10000) {
     		int myIntArray[] = new int[a.length];
     		for (int i = 0; i < a.length; i++) {
 				myIntArray[i] = (int) a[i];
 			}
     		
-    		if(myIntArray.length <= 10000) {
 //    			outArrayI = radixsort(myIntArray, myIntArray.length);
     			outArrayI = myIntArray.clone();
     			radixsort(outArrayI, outArrayI.length);
-    		}else {
-    			
-    		}
     	}else {
-    		double myIntArray[] = new double[a.length];
-    		for (int i = 0; i < a.length; i++) {
-				myIntArray[i] = (double) a[i];
-			}
+    		
+    		//INSERT THE OTHER SORTH ALGORITHMS
     	}
     }
     
