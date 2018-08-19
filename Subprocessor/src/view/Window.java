@@ -69,4 +69,9 @@ public class Window extends JFrame {
 		return array.getOutArrayD();
 	}
 
+	public boolean isActualFloat() {
+		// TODO Auto-generated method stub
+		return inputPanel.isFloat();
+	}
+
 }

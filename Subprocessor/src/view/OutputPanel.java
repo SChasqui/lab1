@@ -20,6 +20,7 @@ public class OutputPanel extends JPanel implements ActionListener{
 	
 	private static final String LEFT = "left";
 	private static final String RIGHT = "right";
+	private static final String SORT = "sort";
 	
 	private JPanel auxOutputPanel;
 	private JPanel auxInfoPanel;
@@ -32,10 +33,15 @@ public class OutputPanel extends JPanel implements ActionListener{
 	private JLabel[] contentOfArray;
 	private Window window;
 	
+	private int index;
+	private int mark;
+	
 	
 	public OutputPanel(Window w) {
 		
 		window = w;
+		index = 0;
+		
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createTitledBorder("Output"));
 		
@@ -55,10 +61,12 @@ public class OutputPanel extends JPanel implements ActionListener{
 		bRight.addActionListener(this);
 		bRight.setActionCommand(RIGHT);
 		bSort = new JButton(new ImageIcon("Data/start.png"));
+		bSort.addActionListener(this);
+		bSort.setActionCommand(SORT);
 		contentOfArray = new JLabel[10];
 		for (int i = 0; i < contentOfArray.length; i++) {
-			contentOfArray[i] = new JLabel("NULL",SwingConstants.CENTER);
-			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 25));
+			contentOfArray[i] = new JLabel("" + "",SwingConstants.CENTER);
+			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 30));
 			contentOfArray[i].setForeground(Color.BLUE);
 			contentOfArray[i].setOpaque(true);
 			contentOfArray[i].setBackground(Color.white);
@@ -91,17 +99,56 @@ public class OutputPanel extends JPanel implements ActionListener{
 		add(auxOutputPanel, BorderLayout.NORTH);
 		add(auxInfoPanel, BorderLayout.SOUTH);
 	}
+	
+	public void paintArrayD(double[] array) {
+		for (int i = 0; i < contentOfArray.length ; i++) {
+			contentOfArray[i].setText(array[index+i] + "");
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+mark)));
+		}
+	}
 
+	private void paintArrayI(int[] array) {
+		System.out.println(index);
+		for (int i = 0; i < contentOfArray.length ; i++) {
+			System.out.println(array[index+i]);
+			contentOfArray[i].setText(array[index+i] + "");
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
+			System.out.println(index+i);
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
 		String command = event.getActionCommand();
 		
-		if(command.equals("Sort")) {
+		if(command.equals(SORT)) {
+			if(window.isActualFloat()) {
+				paintArrayD(window.getOutArrayD());
+			}else {
+				paintArrayI(window.getOutArrayI());
+			}
+		}else if(command.equals(LEFT)) {
+			if (mark > 0) {
+				contentOfArray[mark].setBackground(Color.white);
+				contentOfArray[mark].setForeground(Color.blue);
+				mark--;
+				contentOfArray[mark].setBackground(Color.blue);
+				contentOfArray[mark].setForeground(Color.white);
+			}else {
+				index = index > 0? index-1 : 0;
+			}
 			
-		}else if(command.equals("Sort")) {
-//			window.getOut
+			if (window.isActualFloat()) {
+				double[] array = window.getOutArrayD();
+				paintArrayD(array);
+			} else {
+				int[] array = window.getOutArrayI();
+				paintArrayI(array);
+			}
+
+		}else if(command.equals(RIGHT)) {
+			
 		}
 	}
 }
