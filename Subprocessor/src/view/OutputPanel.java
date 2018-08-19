@@ -1,15 +1,25 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
-public class OutputPanel extends JPanel{
+public class OutputPanel extends JPanel implements ActionListener{
+	
+	private static final String LEFT = "left";
+	private static final String RIGHT = "right";
 	
 	private JPanel auxOutputPanel;
 	private JPanel auxInfoPanel;
@@ -18,6 +28,7 @@ public class OutputPanel extends JPanel{
 	private JTextField txtEspacio;
 	private JTextField txtSortTime;
 	private JLabel labSortTime;
+	private JLabel[] contentOfArray;
 	
 	
 	public OutputPanel() {
@@ -27,27 +38,64 @@ public class OutputPanel extends JPanel{
 		setBorder(BorderFactory.createTitledBorder("Output"));
 		
 		auxInfoPanel = new JPanel();
-		bLeft = new JButton("Izq");
-		bRight = new JButton("Der");
 		txtEspacio = new JTextField();
 		
 		//Initializing the auixiliar panel wich is going to contain the input Array
 		auxOutputPanel = new JPanel();
-		auxOutputPanel.setLayout(new BorderLayout());
-		auxOutputPanel.add(bLeft, BorderLayout.WEST);
-		auxOutputPanel.add(bRight, BorderLayout.EAST);
-		auxOutputPanel.add(txtEspacio, BorderLayout.CENTER);
+		auxOutputPanel.setLayout(new GridLayout(1,14));
+		
+		
+		// Elements initialization
+		bLeft = new JButton(new ImageIcon("Data/left.png"));
+		bLeft.addActionListener(this);
+		bLeft.setActionCommand(LEFT);
+		bRight = new JButton(new ImageIcon("Data/right.png"));
+		bRight.addActionListener(this);
+		bRight.setActionCommand(RIGHT);
+		contentOfArray = new JLabel[10];
+		for (int i = 0; i < contentOfArray.length; i++) {
+			contentOfArray[i] = new JLabel("" + i,SwingConstants.CENTER);
+			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 30));
+			contentOfArray[i].setForeground(Color.BLUE);
+			contentOfArray[i].setOpaque(true);
+			contentOfArray[i].setBackground(Color.white);
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""));
+		}
+		
+		// Add Elements
+		auxOutputPanel.add(bLeft);
+		auxOutputPanel.add(new JLabel());
+		for (int i = 0; i < contentOfArray.length; i++) {
+			auxOutputPanel.add(contentOfArray[i]);
+		}
+		auxOutputPanel.add(new JLabel());
+		auxOutputPanel.add(bRight);
+		
+//		//Adding elements to the auxiliar input panel
+//		auxOutputPanel.add(bLeft, BorderLayout.WEST);
+//		auxOutputPanel.add(bRight, BorderLayout.EAST);
 		
 		//Initializing the auixiliar panel wich is going to show the Sorting's time information
 		auxInfoPanel = new JPanel();
-		auxInfoPanel.setLayout(new GridLayout(1, 3));
-		labSortTime = new JLabel("Sorting time: ");
+		auxInfoPanel.setPreferredSize(new Dimension(100,40));
+		auxInfoPanel.setLayout(new GridLayout(1, 14));
+		labSortTime = new JLabel("Sorting time:    ");
 		txtSortTime = new JTextField("1.8");
 		auxInfoPanel.add(labSortTime);
 		auxInfoPanel.add(txtSortTime);
+		for (int i = 0; i < 12; i++) {
+			auxInfoPanel.add(new JLabel());
+		}
 		
 		
 		add(auxOutputPanel, BorderLayout.NORTH);
 		add(auxInfoPanel, BorderLayout.SOUTH);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
