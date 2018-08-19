@@ -26,19 +26,21 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 	private JPanel auxLeftPanel;
 	private JPanel auxRightPanel;
 	
+	// Labels
 	private JLabel labInOrder;
 	private JLabel labRandomOrder;
 	private JLabel labReverseOrder;
 	private JLabel labPercent;
 	
+	// CheckBox
 	private Checkbox checkInOrder;
 	private Checkbox checkRandom;
 	private Checkbox checkReverse;
+	
+	// TextField
 	private JTextField txtPercent;
 	
-	private ButtonGroup radioButtonGrup;
-	
-	
+
 	public RandomGeneratorPanel() {
 		
 		//Main panel
@@ -82,7 +84,7 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 		auxLeftPanel.add(generate);
 		auxLeftPanel.add(btGenerate);
 		
-		
+		// RightPanel Elements initialization
 		labInOrder = new JLabel("In order");
 		labRandomOrder = new JLabel("Random Order");
 		labReverseOrder = new JLabel("Reverse Order");
@@ -94,7 +96,7 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 		
 		txtPercent =  new JTextField();
 		
-		
+		// Add Elements to Right Panel
 		auxRightPanel.add(labInOrder);
 		auxRightPanel.add(checkInOrder);
 		auxRightPanel.add(labRandomOrder);
