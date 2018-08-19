@@ -38,12 +38,18 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 	private JCheckBox checkInOrder;
 	private JCheckBox checkRandom;
 	private JCheckBox checkReverse;
+	private JCheckBox checkRepetition;
 	
 	// TextField
 	private JTextField txtPercent;
 	
+	// Window relation
+	private Window window;
+	
 
-	public RandomGeneratorPanel() {
+	public RandomGeneratorPanel(Window window) {
+		
+		this.window = window;
 		
 		//Main panel
 		setLayout(new GridLayout(1, 2));
@@ -86,29 +92,27 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 		auxLeftPanel.add(generate);
 		auxLeftPanel.add(btGenerate);
 		
-		// RightPanel Elements initialization
-		labInOrder = new JLabel("In order");
-		labRandomOrder = new JLabel("Random Order");
-		labReverseOrder = new JLabel("Reverse Order");
 		labPercent = new JLabel("% Disorder");
 		
-		checkInOrder = new JCheckBox("                  (you can only select one)");
+		checkInOrder = new JCheckBox("In order");
 		checkInOrder.addItemListener(this);
-		checkRandom = new JCheckBox("                  (you can only select one)");
+		checkRandom = new JCheckBox("Random Order");
 		checkRandom.addItemListener(this);
-		checkReverse = new JCheckBox("                  (you can only select one)");
+		checkReverse = new JCheckBox("Reverse Order");
 		checkReverse.addItemListener(this);
+		checkRepetition = new JCheckBox("Repetition");
 		
 		txtPercent =  new JTextField();
 
 		
 		// Add Elements to Right Panel
-		auxRightPanel.add(labInOrder);
+//		auxRightPanel.add(labInOrder);
 		auxRightPanel.add(checkInOrder);
-		auxRightPanel.add(labRandomOrder);
+//		auxRightPanel.add(labRandomOrder);
 		auxRightPanel.add(checkRandom);
-		auxRightPanel.add(labReverseOrder);
+//		auxRightPanel.add(labReverseOrder);
 		auxRightPanel.add(checkReverse);
+		auxRightPanel.add(checkRepetition);
 		auxRightPanel.add(labPercent);
 		auxRightPanel.add(txtPercent);
 	
@@ -119,7 +123,9 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (checkInOrder.isSelected()) {
-			
+			window.generateRandomInOrder(Integer.parseInt(txtMaxNumber.getText()),
+					Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
+					, checkRepetition.isSelected());
 		}
 	}
 

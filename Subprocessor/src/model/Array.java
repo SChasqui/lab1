@@ -17,7 +17,7 @@ public class Array {
 	}
 	
 	// Method that generates a random arrangement of doubles without repetition in order
-	public void randomWithoutRepetitionO(int min, int max, int size) {
+	public void randomWithoutRepetitionOD(int min, int max, int size) {
 		
 		inArrayD = new double[size];
 		
@@ -30,7 +30,7 @@ public class Array {
 	}
 	
 	// Method that generates a random arrangement of doubles without repetition in inverse-order
-		public void randomWithoutRepetitionI(int min, int max, int size) {
+		public void randomWithoutRepetitionID(int min, int max, int size) {
 			
 			inArrayD = new double[size];
 			

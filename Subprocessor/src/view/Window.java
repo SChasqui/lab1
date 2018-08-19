@@ -25,7 +25,7 @@ public class Window extends JFrame {
 		setLayout(new BorderLayout());
 		
 		inputPanel = new InputPanel(this);
-		generatorPanel = new RandomGeneratorPanel();
+		generatorPanel = new RandomGeneratorPanel(this);
 		outputPanel = new OutputPanel(this);
 		array = new Array();
 		
@@ -76,6 +76,14 @@ public class Window extends JFrame {
 
 	public void sortIntInput(int[] a) {
 		array.chooseIntAlgorithm(a);
+	}
+
+	public void generateRandomInOrder(int max, int min, int size, boolean repetition) {
+		if (inputPanel.isFloat() && !repetition) {
+			array.randomWithoutRepetitionOD(min, max, size);
+			inputPanel.setSize(size);
+		}
+		
 	}
 
 }
