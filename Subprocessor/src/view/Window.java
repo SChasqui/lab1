@@ -6,12 +6,17 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Array;
+
 public class Window extends JFrame {
 	
-	private JPanel auxiliarPanel;
+	// Graphic relations
 	private InputPanel inputPanel;
 	private RandomGeneratorPanel generatorPanel;
 	private OutputPanel outputPanel;
+	
+	// Model relations
+	private Array array;
 	
 	public Window() {
 		// Basic window settings
@@ -22,18 +27,11 @@ public class Window extends JFrame {
 		inputPanel = new InputPanel(this);
 		generatorPanel = new RandomGeneratorPanel();
 		outputPanel = new OutputPanel();
+		array = new Array();
 		
 		//Add elements
-		
 		add(inputPanel,BorderLayout.NORTH);
-		
-		auxiliarPanel = new JPanel();
-		auxiliarPanel.setLayout(new GridLayout(1, 2));
-		
-		auxiliarPanel.add(generatorPanel);
-//		auxiliarPanel.add(sortSettingsPanel);
-		
-		add(auxiliarPanel, BorderLayout.CENTER);
+		add(generatorPanel, BorderLayout.CENTER);
 		add(outputPanel, BorderLayout.SOUTH);
 		
 		pack();
@@ -41,6 +39,26 @@ public class Window extends JFrame {
 	
 	public static void main(String[] args) {
 		Window window = new Window();
+	}
+
+	public double[] getInArrayD() {
+		return array.getInArrayD();
+	}
+
+	public void createModelArray(int size) {
+		array.setUpArray(size);
+	}
+
+	public void addElementI(int element, int index) {
+		array.addElementInt(element, index);		
+	}
+
+	public void addElementD(double element, int index) {
+		array.addElementDouble(element, index);
+	}
+
+	public int[] getInArrayI() {
+		return array.getInArrayI();
 	}
 
 }

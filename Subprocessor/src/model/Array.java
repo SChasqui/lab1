@@ -71,5 +71,10 @@ public class Array {
 	public void addElementDouble(double element, int index) {
 		inArrayD[index]=element;
 	}
+	
+	public void setUpArray(int size) {
+		inArrayD = new double[size];
+		inArrayI = new int[size];
+	}
 
 }

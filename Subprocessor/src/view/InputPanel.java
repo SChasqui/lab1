@@ -30,6 +30,7 @@ public class InputPanel extends JPanel implements ActionListener{
 	private Window window;
 	
 	private int index;
+	private int mark;
 	
 	// These elements are responsible for extracting the input data
 	private JPanel subPanelIn;
@@ -144,21 +145,83 @@ public class InputPanel extends JPanel implements ActionListener{
 	public boolean isFloat() {
 		return checkFloat.isSelected();
 	}
+	
+	public void paintArrayD(double[] array) {
+		for (int i = 0; i < contentOfArray.length && i + index < Integer.parseInt(txtArraySize.getText()) ; i++) {
+			contentOfArray[i].setText(array[index+i] + "");
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+mark)));
+		}
+	}
 
+	private void paintArrayI(int[] array) {
+		System.out.println(index);
+		for (int i = 0; i < contentOfArray.length && i + index < Integer.parseInt(txtArraySize.getText()) ; i++) {
+			contentOfArray[i].setText(array[index+i] + "");
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
+			System.out.println(index+i);
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();
 		
 		if (command.equals(LEFT) && !txtArraySize.isEditable()) {
 			
+			if (mark > 0) {
+				contentOfArray[mark].setBackground(Color.white);
+				mark--;
+				contentOfArray[mark].setBackground(Color.red);
+			}else {
+				index = index > 0? index-1 : 0;
+			}
+			
+			if (isFloat()) {
+				double[] array = window.getInArrayD();
+				paintArrayD(array);
+			} else {
+				int[] array = window.getInArrayI();
+				paintArrayI(array);
+			}
+			
 		}else if (command.equals(RIGHT) && !txtArraySize.isEditable()) {
 			
+			if (mark < 9) {
+				contentOfArray[mark].setBackground(Color.white);
+				mark++;
+				contentOfArray[mark].setBackground(Color.red);
+			}else {
+				index = index < Integer.parseInt(txtArraySize.getText()) - 10 ? index + 1 : index;
+			}
+			
+			if (isFloat()) {
+				double[] array = window.getInArrayD();
+				paintArrayD(array);
+			} else {
+				int[] array = window.getInArrayI();
+				paintArrayI(array);
+			}
+			
 		}else if (command.equals(ADD) && !txtArraySize.isEditable()) {
+			
+			try {
+				if (isFloat()) {
+					window.addElementD(Double.parseDouble(txtInput.getText()),index + mark);
+					double[] array = window.getInArrayD();
+					paintArrayD(array);
+				} else {
+					window.addElementI(Integer.parseInt(txtInput.getText()),index + mark);
+				}
+				
+			} catch (NullPointerException | NumberFormatException e) {
+				// TODO: handle exception
+			}
 			
 		}else if (command.equals(SET) && txtArraySize.isEditable()) {
 			try {
 				int size = Integer.parseInt(txtArraySize.getText());
 				txtArraySize.setEditable(false);
+				window.createModelArray(size);
 			} catch (NullPointerException | NumberFormatException e) {
 				JOptionPane.showMessageDialog(this, "you need to write a size to the array before putting it", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -169,5 +232,6 @@ public class InputPanel extends JPanel implements ActionListener{
 			}
 		}
 	}
+
 	
 }
