@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class InputPanel extends JPanel implements ActionListener{
 	
@@ -19,7 +23,13 @@ public class InputPanel extends JPanel implements ActionListener{
 
 	private static final String RIGHT = "right";
 
+	private static final String ADD = "add";
+
+	private static final String SET = "set";
+
 	private Window window;
+	
+	private int index;
 	
 	// These elements are responsible for extracting the input data
 	private JPanel subPanelIn;
@@ -28,15 +38,13 @@ public class InputPanel extends JPanel implements ActionListener{
 	private JLabel arraySize;
 	private JTextField txtArraySize;
 	private JButton btAdd;
+	private JButton btSet;
 	
 	// These elements are responsible for showing the content that the user has entered
 	private JPanel subPanelOut;
 	private JButton btLeft;
 	private JButton btRight;
 	private JLabel[] contentOfArray;
-	
-	// This label works like a space 
-	private JLabel space = new JLabel("");
 	
 	// Float numbers check
 	private JPanel subPanelCheck;
@@ -46,6 +54,8 @@ public class InputPanel extends JPanel implements ActionListener{
 	public InputPanel(Window window) {
 		
 		this.window = window;
+		
+		index = 0;
 		
 		// Basic panel settings
 		setLayout(new BorderLayout());
@@ -76,22 +86,27 @@ public class InputPanel extends JPanel implements ActionListener{
 	public void fillSubPanelIn() {
 		// Sub panel initialization
 		subPanelIn = new JPanel();
-		subPanelIn.setLayout(new GridLayout(3, 2));
+		subPanelIn.setLayout(new GridLayout(2, 3));
 		
 		// Elements initialization
 		input = new JLabel("Input:");
 		txtInput = new JTextField();
+		btAdd = new JButton("Add");
+		btAdd.addActionListener(this);
+		btAdd.setActionCommand(ADD);
 		arraySize = new JLabel("Size:");
 		txtArraySize = new JTextField();
-		btAdd = new JButton("Add");
+		btSet = new JButton("Set");
+		btSet.addActionListener(this);
+		btSet.setActionCommand(SET);
 		
 		// Add Elements
 		subPanelIn.add(input);
 		subPanelIn.add(txtInput);
+		subPanelIn.add(btAdd);
 		subPanelIn.add(arraySize);
 		subPanelIn.add(txtArraySize);
-		subPanelIn.add(space);
-		subPanelIn.add(btAdd);
+		subPanelIn.add(btSet);
 	}
 	
 	public void fillSubPanelOut() {
@@ -108,22 +123,51 @@ public class InputPanel extends JPanel implements ActionListener{
 		btRight.setActionCommand(RIGHT);
 		contentOfArray = new JLabel[10];
 		for (int i = 0; i < contentOfArray.length; i++) {
-			contentOfArray[i] = new JLabel();
+			contentOfArray[i] = new JLabel("" + i,SwingConstants.CENTER);
+			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 30));
+			contentOfArray[i].setForeground(Color.BLUE);
+			contentOfArray[i].setOpaque(true);
+			contentOfArray[i].setBackground(Color.white);
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""));
 		}
 		
 		// Add Elements
 		subPanelOut.add(btLeft);
-		subPanelOut.add(space);
+		subPanelOut.add(new JLabel());
 		for (int i = 0; i < contentOfArray.length; i++) {
 			subPanelOut.add(contentOfArray[i]);
 		}
-		subPanelOut.add(space);
+		subPanelOut.add(new JLabel());
 		subPanelOut.add(btRight);
+	}
+	
+	public boolean isFloat() {
+		return checkFloat.isSelected();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		String command = event.getActionCommand();
 		
+		if (command.equals(LEFT) && !txtArraySize.isEditable()) {
+			
+		}else if (command.equals(RIGHT) && !txtArraySize.isEditable()) {
+			
+		}else if (command.equals(ADD) && !txtArraySize.isEditable()) {
+			
+		}else if (command.equals(SET) && txtArraySize.isEditable()) {
+			try {
+				int size = Integer.parseInt(txtArraySize.getText());
+				txtArraySize.setEditable(false);
+			} catch (NullPointerException | NumberFormatException e) {
+				JOptionPane.showMessageDialog(this, "you need to write a size to the array before putting it", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}else if (command.equals(SET) && !txtArraySize.isEditable()) {
+			int option = JOptionPane.showOptionDialog(this, "You want to change the size of the input?", "Question", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+			if (option == 0) {
+				txtArraySize.setEditable(true);
+			}
+		}
 	}
 	
 }
