@@ -57,8 +57,8 @@ public class OutputPanel extends JPanel implements ActionListener{
 		bSort = new JButton(new ImageIcon("Data/start.png"));
 		contentOfArray = new JLabel[10];
 		for (int i = 0; i < contentOfArray.length; i++) {
-			contentOfArray[i] = new JLabel("" + i,SwingConstants.CENTER);
-			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 30));
+			contentOfArray[i] = new JLabel("NULL",SwingConstants.CENTER);
+			contentOfArray[i].setFont(new Font("Arial", Font.BOLD, 25));
 			contentOfArray[i].setForeground(Color.BLUE);
 			contentOfArray[i].setOpaque(true);
 			contentOfArray[i].setBackground(Color.white);

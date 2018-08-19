@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -34,6 +35,8 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener{
 	private Checkbox checkRandom;
 	private Checkbox checkReverse;
 	private JTextField txtPercent;
+	
+	private ButtonGroup radioButtonGrup;
 	
 	
 	public RandomGeneratorPanel() {
