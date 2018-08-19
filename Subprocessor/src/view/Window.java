@@ -82,6 +82,9 @@ public class Window extends JFrame {
 		if (inputPanel.isFloat() && !repetition) {
 			array.randomWithoutRepetitionOD(min, max, size);
 			inputPanel.setSize(size);
+		}else if(!inputPanel.isFloat() && !repetition){
+			array.randomWithoutRepetitionOI(min, max, size);
+			inputPanel.setSize(size);
 		}
 		
 	}

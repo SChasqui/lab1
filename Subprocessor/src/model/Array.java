@@ -41,6 +41,32 @@ public class Array {
 			}
 			
 		}
+		
+		// Method that generates a random arrangement of doubles without repetition in order
+		public void randomWithoutRepetitionOI(int min, int max, int size) {
+			
+			inArrayI = new int[size];
+			
+			double interval = (max-min) / size;
+			
+			for (int i = 0; i < inArrayI.length; i++) {
+				inArrayI[i] = (int) (( Math.random() * interval ) + (min + (interval * i))) ;
+			}
+			
+		}
+		
+		// Method that generates a random arrangement of doubles without repetition in inverse-order
+			public void randomWithoutRepetitionII(int min, int max, int size) {
+				
+				inArrayI = new int[size];
+				
+				double interval = (max-min) / size;
+				
+				for (int i = inArrayI.length - 1; i >= 0 ; i++) {
+					inArrayI[i - inArrayI.length - 1] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
+				}
+				
+			}
 	
 	// Randomize the Order of the array
 	public void randomizeOrder() {

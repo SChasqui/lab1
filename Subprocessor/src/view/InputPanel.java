@@ -78,7 +78,7 @@ public class InputPanel extends JPanel implements ActionListener{
 		subPanelCheck = new JPanel();
 		
 		// Elements initialization
-		checkFloat = new JCheckBox("check if you plan to use floating point numbers");
+		checkFloat = new JCheckBox("floating point numbers");
 		
 		// Add Elements
 		subPanelCheck.add(checkFloat);
@@ -149,7 +149,7 @@ public class InputPanel extends JPanel implements ActionListener{
 	public void paintArrayD(double[] array) {
 		for (int i = 0; i < contentOfArray.length && i + index < Integer.parseInt(txtArraySize.getText()) ; i++) {
 			contentOfArray[i].setText(array[index+i] + "");
-			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+mark)));
+			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
 		}
 	}
 
@@ -158,7 +158,6 @@ public class InputPanel extends JPanel implements ActionListener{
 		for (int i = 0; i < contentOfArray.length && i + index < Integer.parseInt(txtArraySize.getText()) ; i++) {
 			contentOfArray[i].setText(array[index+i] + "");
 			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
-			System.out.println(index+i);
 		}
 	}
 	
