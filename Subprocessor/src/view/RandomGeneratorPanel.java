@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Checkbox;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -10,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class RandomGeneratorPanel extends JPanel {
+public class RandomGeneratorPanel extends JPanel implements ActionListener{
 	
 	private JLabel numberOfElements;
 	private JTextField txtNumberOfElements;
@@ -27,28 +29,30 @@ public class RandomGeneratorPanel extends JPanel {
 	private JLabel labRandomOrder;
 	private JLabel labReverseOrder;
 	private JLabel labPercent;
-	private JLabel labSort;
 	
 	private Checkbox checkInOrder;
 	private Checkbox checkRandom;
 	private Checkbox checkReverse;
 	private JTextField txtPercent;
 	
-	private JButton bSort;
 	
 	public RandomGeneratorPanel() {
 		
 		//Main panel
 		setLayout(new GridLayout(1, 2));
 		
-		//Auxiliar left panel init
+		//Auxiliary left panel init
 		auxLeftPanel = new JPanel();
 		
-		//Auxiliar right panel init
+		//Auxiliary right panel init
 		auxRightPanel = new JPanel();
 		
-		// Basic panel settings
-		auxLeftPanel.setLayout(new GridLayout( 5 , 2 ));
+		// Basic right panel settings
+		auxRightPanel.setLayout(new GridLayout(4, 2));
+		auxRightPanel.setBorder(BorderFactory.createTitledBorder("Random Settings"));
+		
+		// Basic left panel settings
+		auxLeftPanel.setLayout(new GridLayout( 4 , 2 ));
 		auxLeftPanel.setBorder(BorderFactory.createTitledBorder("Random Generator"));
 		
 		// LeftPanel Elements initialization
@@ -60,6 +64,7 @@ public class RandomGeneratorPanel extends JPanel {
 		txtMinNumber = new JTextField();
 		generate = new JLabel("Generate");
 		btGenerate = new JButton(new ImageIcon("Data/start.png"));
+		btGenerate.addActionListener(this);
 		
 		
 		// Add Elements to left Panel
@@ -75,11 +80,10 @@ public class RandomGeneratorPanel extends JPanel {
 		auxLeftPanel.add(btGenerate);
 		
 		
-		labInOrder = new JLabel("In order     ");
-		labRandomOrder = new JLabel("Random Order     ");
-		labReverseOrder = new JLabel("Reverse Order    ");
-		labPercent = new JLabel("% Disorder    ");
-		labSort =  new JLabel("Sort");
+		labInOrder = new JLabel("In order");
+		labRandomOrder = new JLabel("Random Order");
+		labReverseOrder = new JLabel("Reverse Order");
+		labPercent = new JLabel("% Disorder");
 		
 		checkInOrder = new Checkbox();
 		checkRandom = new Checkbox();
@@ -87,7 +91,6 @@ public class RandomGeneratorPanel extends JPanel {
 		
 		txtPercent =  new JTextField();
 		
-		bSort =  new JButton("PLAY");
 		
 		auxRightPanel.add(labInOrder);
 		auxRightPanel.add(checkInOrder);
@@ -97,12 +100,14 @@ public class RandomGeneratorPanel extends JPanel {
 		auxRightPanel.add(checkReverse);
 		auxRightPanel.add(labPercent);
 		auxRightPanel.add(txtPercent);
-		auxRightPanel.add(labSort);
-		auxRightPanel.add(bSort);
-		auxRightPanel.setBorder(BorderFactory.createTitledBorder("Sort Settings"));
 	
 		add(auxLeftPanel);
 		add(auxRightPanel);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		
 	}
 
 }

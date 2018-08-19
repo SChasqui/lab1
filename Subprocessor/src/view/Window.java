@@ -19,9 +19,8 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
-		inputPanel = new InputPanel();
+		inputPanel = new InputPanel(this);
 		generatorPanel = new RandomGeneratorPanel();
-//		sortSettingsPanel = new SortSettings(this);
 		outputPanel = new OutputPanel();
 		
 		//Add elements
