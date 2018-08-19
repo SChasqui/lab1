@@ -26,7 +26,7 @@ public class Window extends JFrame {
 		
 		inputPanel = new InputPanel(this);
 		generatorPanel = new RandomGeneratorPanel();
-		outputPanel = new OutputPanel();
+		outputPanel = new OutputPanel(this);
 		array = new Array();
 		
 		//Add elements
@@ -59,6 +59,14 @@ public class Window extends JFrame {
 
 	public int[] getInArrayI() {
 		return array.getInArrayI();
+	}
+	
+	public int[] getOutArrayI() {
+		return array.getOutArrayI();
+	}
+	
+	public double[] getOutArrayD() {
+		return array.getOutArrayD();
 	}
 
 }

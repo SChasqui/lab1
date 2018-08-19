@@ -25,15 +25,17 @@ public class OutputPanel extends JPanel implements ActionListener{
 	private JPanel auxInfoPanel;
 	private JButton bLeft;
 	private JButton bRight;
+	private JButton bSort;
 	private JTextField txtEspacio;
 	private JTextField txtSortTime;
 	private JLabel labSortTime;
 	private JLabel[] contentOfArray;
+	private Window window;
 	
 	
-	public OutputPanel() {
+	public OutputPanel(Window w) {
 		
-		
+		window = w;
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createTitledBorder("Output"));
 		
@@ -52,6 +54,7 @@ public class OutputPanel extends JPanel implements ActionListener{
 		bRight = new JButton(new ImageIcon("Data/right.png"));
 		bRight.addActionListener(this);
 		bRight.setActionCommand(RIGHT);
+		bSort = new JButton(new ImageIcon("Data/start.png"));
 		contentOfArray = new JLabel[10];
 		for (int i = 0; i < contentOfArray.length; i++) {
 			contentOfArray[i] = new JLabel("" + i,SwingConstants.CENTER);
@@ -71,10 +74,6 @@ public class OutputPanel extends JPanel implements ActionListener{
 		auxOutputPanel.add(new JLabel());
 		auxOutputPanel.add(bRight);
 		
-//		//Adding elements to the auxiliar input panel
-//		auxOutputPanel.add(bLeft, BorderLayout.WEST);
-//		auxOutputPanel.add(bRight, BorderLayout.EAST);
-		
 		//Initializing the auixiliar panel wich is going to show the Sorting's time information
 		auxInfoPanel = new JPanel();
 		auxInfoPanel.setPreferredSize(new Dimension(100,40));
@@ -83,9 +82,10 @@ public class OutputPanel extends JPanel implements ActionListener{
 		txtSortTime = new JTextField("1.8");
 		auxInfoPanel.add(labSortTime);
 		auxInfoPanel.add(txtSortTime);
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 11; i++) {
 			auxInfoPanel.add(new JLabel());
 		}
+		auxInfoPanel.add(bSort);
 		
 		
 		add(auxOutputPanel, BorderLayout.NORTH);
@@ -94,8 +94,14 @@ public class OutputPanel extends JPanel implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
+		String command = event.getActionCommand();
 		
+		if(command.equals("Sort")) {
+			
+		}else if(command.equals("Sort")) {
+//			window.getOut
+		}
 	}
 }
