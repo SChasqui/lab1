@@ -170,8 +170,10 @@ public class InputPanel extends JPanel implements ActionListener{
 			
 			if (mark > 0) {
 				contentOfArray[mark].setBackground(Color.white);
+				contentOfArray[mark].setForeground(Color.blue);
 				mark--;
-				contentOfArray[mark].setBackground(Color.red);
+				contentOfArray[mark].setBackground(Color.blue);
+				contentOfArray[mark].setForeground(Color.white);
 			}else {
 				index = index > 0? index-1 : 0;
 			}
@@ -188,8 +190,10 @@ public class InputPanel extends JPanel implements ActionListener{
 			
 			if (mark < 9) {
 				contentOfArray[mark].setBackground(Color.white);
+				contentOfArray[mark].setForeground(Color.blue);
 				mark++;
-				contentOfArray[mark].setBackground(Color.red);
+				contentOfArray[mark].setBackground(Color.blue);
+				contentOfArray[mark].setForeground(Color.white);
 			}else {
 				index = index < Integer.parseInt(txtArraySize.getText()) - 10 ? index + 1 : index;
 			}
@@ -211,6 +215,8 @@ public class InputPanel extends JPanel implements ActionListener{
 					paintArrayD(array);
 				} else {
 					window.addElementI(Integer.parseInt(txtInput.getText()),index + mark);
+					int[] array = window.getInArrayI();
+					paintArrayI(array);
 				}
 				
 			} catch (NullPointerException | NumberFormatException e) {
