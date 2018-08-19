@@ -124,6 +124,7 @@ public class OutputPanel extends JPanel implements ActionListener{
 		
 		if(command.equals(SORT)) {
 			if(window.isActualFloat()) {
+				window.sortDoubleInput(window.getInArrayD());
 				paintArrayD(window.getOutArrayD());
 			}else {
 				window.sortIntInput(window.getInArrayI());

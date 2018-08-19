@@ -78,6 +78,10 @@ public class Window extends JFrame {
 		array.chooseIntAlgorithm(a);
 	}
 
+	public void sortDoubleInput(double[] a) {
+		array.chooseDoubleAlgorithm(a);
+	}
+	
 	public void generateRandomInOrder(int max, int min, int size, boolean repetition) {
 		if (inputPanel.isFloat() && !repetition) {
 			array.randomWithoutRepetitionOD(min, max, size);
@@ -88,5 +92,6 @@ public class Window extends JFrame {
 		}
 		
 	}
+
 
 }
