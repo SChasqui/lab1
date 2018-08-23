@@ -12,8 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import model.ImpossibleOperation;
 
 public class RandomGeneratorPanel extends JPanel implements ActionListener, ItemListener{
 	
@@ -123,9 +126,13 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (checkInOrder.isSelected()) {
-			window.generateRandomInOrder(Integer.parseInt(txtMaxNumber.getText()),
-					Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
-					, checkRepetition.isSelected());
+			try {
+				window.generateRandomInOrder(Integer.parseInt(txtMaxNumber.getText()),
+						Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
+						, checkRepetition.isSelected());
+			} catch (NumberFormatException | ImpossibleOperation e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 
