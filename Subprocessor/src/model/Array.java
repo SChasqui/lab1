@@ -84,8 +84,8 @@ public class Array {
 				
 				double interval = (max-min) / size;
 				
-				for (int i = inArrayI.length - 1; i >= 0 ; i++) {
-					inArrayI[i - inArrayI.length - 1] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
+				for (int i = inArrayI.length; i <= (2)*(inArrayI.length -1) ; i++) {
+					inArrayI[i - inArrayI.length] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
 				}
 				
 			}
@@ -103,7 +103,7 @@ public class Array {
 	// Randomize the Order of the int array
 		public void randomizeOrderI() {
 			for (int i = 0; i < inArrayI.length; i++) {
-				int num = (int) (Math.random() * inArrayD.length);
+				int num = (int) (Math.random() * inArrayI.length);
 				int temp = inArrayI[i];
 				inArrayI[i] = inArrayI[num];
 				inArrayI[num] = temp;

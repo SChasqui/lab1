@@ -84,10 +84,10 @@ public class Window extends JFrame {
 	}
 	
 	public void generateRandomInOrder(int max, int min, int size, boolean repetition) throws ImpossibleOperation {
-		if (inputPanel.isFloat() && !repetition) {
+		if (inputPanel.isFloat() && !repetition && (max-min)/size > 0) {
 			array.randomWithoutRepetitionOD(min, max, size);
 			inputPanel.setSize(size);
-		}else if(!inputPanel.isFloat() && !repetition && (max-min)/size > 0){
+		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
 			array.randomWithoutRepetitionOI(min, max, size);
 			inputPanel.setSize(size);
 		}else {
@@ -99,6 +99,18 @@ public class Window extends JFrame {
 	public int getActualArraySize() {
 //		return generatorPanel.get
 		return inputPanel.getArraySize();
+	}
+
+	public void generateRandomReverseOrder(int max, int min, int size, boolean repetition) throws ImpossibleOperation {
+		if (inputPanel.isFloat() && !repetition && (max-min)/size > 0) {
+			array.randomWithoutRepetitionID(min, max, size);
+			inputPanel.setSize(size);
+		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
+			array.randomWithoutRepetitionII(min, max, size);
+			inputPanel.setSize(size);
+		}else {
+			throw new ImpossibleOperation("the values entered do not allow the creation of an array with the conditions proposed for the random");
+		}
 	}
 
 
