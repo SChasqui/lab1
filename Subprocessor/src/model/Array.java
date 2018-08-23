@@ -219,7 +219,7 @@ public class Array {
     
     
     ///////////////////////////////////////////////////////
-    //This is an auxiliary method to the method Merge Sort 
+    //This is an auxiliary method to the method Merge Sort.
     //////////////////////////////////////////////////////
     public void auxiliaryForMerge(int[] arr,int a,int b,int c,int d){ 
     	
