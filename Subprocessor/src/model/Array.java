@@ -151,6 +151,8 @@ public class Array {
         	
     }
     
+    
+    
     ////////////////////////////////////
     //RADIX SORT
     ////////////////////////////////////
@@ -169,8 +171,12 @@ public class Array {
             countSort(arr, n, exp);
     }
     
+    
+    
+    /////////////////////////////////////////
+    ////// MERGE SORT FOR DOUBLES
     ////////////////////////////////////
-    //MERGE SORT
+    //Utilities
     ////////////////////////////////////
     private static double[] merge(double[] a, double[] b) {
         double[] c = new double[a.length + b.length];
@@ -183,7 +189,12 @@ public class Array {
         }
         return c;
     }
+    
+    
 
+    ////////////////////////////////////////////
+    // If you want to sort big doubles use this  
+    ////////////////////////////////////////////
     public static double[] mergesort(double[] input) {
         int N = input.length;
         if (N <= 1) return input;
@@ -196,7 +207,92 @@ public class Array {
         return merge(mergesort(a), mergesort(b));
     }
     
- 
+    
+    ///////////////////////////////////////////////////////
+    //This is an auxiliary method to the method Merge Sort 
+    //////////////////////////////////////////////////////
+    public void auxiliaryForMerge(int[] arr,int a,int b,int c,int d){ 
+    	
+    	//It line finds the minimum value of an numeric array
+        d = Math.min(d,arr.length-1);    
+        
+        //It is an auxiliary array 
+        int aux [] = new int[d-a + 1]; 
+        
+        int k = 0; 
+        int or = a; 
+        
+        while( k < aux.length) 
+          if((a>b ?false: (c>d? true : arr[a] <= arr[c]))) 
+            aux[k++] = arr[a++];         
+          else 
+            aux[k++] = arr[c++];      
+           
+        for(int i = 0; i < aux.length; i++) 
+          arr[or + i] = aux[i];     
+      }
+    
+    
+    
+    ////////////////////////
+    //Merge Sort for ints
+    ////////////////////////
+    public int[] mergeForInts(int arr[]) {
+    	int i = 1; 
+    	  for(i = 1; i < arr.length;i*=2){ 
+    	    for(int j = 0;j < arr.length; j += i){ 
+    	      int p = i >> 1; 
+    	    auxiliaryForMerge(arr,j,j+p-1,j+p,j+p+p-1); 
+    	    } 
+    	  } 
+    	  auxiliaryForMerge(arr,0,i/2 - 1,i/2, arr.length); 
+    	    return arr; 
+    }  
+    
+    
+    ///////////////////////////////////////////////////////
+    //This is an auxiliary method to the method Merge Sort 
+    //////////////////////////////////////////////////////
+   public int partition(int arr[], int left, int right) {
+
+          int i = left, j = right;
+          int tmp;
+          int pivot = arr[(left + right) / 2];
+
+          while (i <= j) {
+             while (arr[i] < pivot)
+               i++;
+
+             while (arr[j] > pivot)
+               j--;
+
+             if (i <= j) {
+               tmp = arr[i];
+               arr[i] = arr[j];
+               arr[j] = tmp;
+                i++;
+               j--;
+             }
+          }
+    return i;
+
+    }
+    
+    ////////////////////////
+    //Quick Sort
+    ////////////////////////
+  /*  public int[] quickSort() {
+        int index = partition(arr, left, right);
+
+        if (left < index - 1)
+
+              quickSort(arr, left, index - 1);
+
+        if (index < right)
+
+              quickSort(arr, index, right);
+    }  */
+    
 
 	public double[] getInArrayD() {
 		return inArrayD;
