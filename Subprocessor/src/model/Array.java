@@ -8,15 +8,34 @@ public class Array {
 	
 	private double[] inArrayD;
 	private double[] outArrayD;
-	private int upperLimit;
-
-	private int downLimit;
-	
+	private double orderPercentege;
 	private int[] inArrayI;
 	private int[] outArrayI;
 	
 	public Array() {
 		
+	}
+	
+	public void disorderByPercentageD(double percentage, int size) {
+		int num = (int) Math.round((size * (percentage/100)));
+		while (num > 0) {
+			int index1 = (int) (Math.random()*size);
+			int index2 = (int) (Math.random()*size);
+			double temp = inArrayD[index1];
+			inArrayD[index1] = inArrayD[index2];
+			inArrayD[index2] = temp;
+		}
+	}
+	
+	public void disorderByPercentageI(double percentage, int size) {
+		int num = (int) Math.round((size * (percentage/100)));
+		while (num > 0) {
+			int index1 = (int) (Math.random()*size);
+			int index2 = (int) (Math.random()*size);
+			int temp = inArrayI[index1];
+			inArrayI[index1] = inArrayI[index2];
+			inArrayI[index2] = temp;
+		}
 	}
 	
 	// Method that generates a random arrangement of doubles without repetition in order
@@ -336,20 +355,4 @@ public class Array {
 		inArrayI = new int[size];
 	}
 	
-	public int getUpperLimit() {
-		return upperLimit;
-	}
-	
-	public void setUpperLimit(int upperLimit) {
-		this.upperLimit = upperLimit;
-	}
-	
-	public int getDownLimit() {
-		return downLimit;
-	}
-	
-	public void setDownLimit(int downLimit) {
-		this.downLimit = downLimit;
-	}
-
 }
