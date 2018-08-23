@@ -42,7 +42,7 @@ public class Array {
 			
 		}
 		
-		// Method that generates a random arrangement of doubles without repetition in order
+		// Method that generates a random arrangement of int without repetition in order
 		public void randomWithoutRepetitionOI(int min, int max, int size) {
 			
 			inArrayI = new int[size];
@@ -68,8 +68,8 @@ public class Array {
 				
 			}
 	
-	// Randomize the Order of the array
-	public void randomizeOrder() {
+	// Randomize the Order of the double array
+	public void randomizeOrderD() {
 		for (int i = 0; i < inArrayD.length; i++) {
 			int num = (int) (Math.random() * inArrayD.length);
 			double temp = inArrayD[i];
@@ -77,6 +77,16 @@ public class Array {
 			inArrayD[num] = temp;
 		}
 	}
+	
+	// Randomize the Order of the int array
+		public void randomizeOrderI() {
+			for (int i = 0; i < inArrayI.length; i++) {
+				int num = (int) (Math.random() * inArrayD.length);
+				int temp = inArrayI[i];
+				inArrayI[i] = inArrayI[num];
+				inArrayI[num] = temp;
+			}
+		}
 	
 	//Radix Sort
     // A utility function to get maximum value in arr[]

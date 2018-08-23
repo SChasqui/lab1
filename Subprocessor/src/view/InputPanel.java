@@ -192,7 +192,7 @@ public class InputPanel extends JPanel implements ActionListener{
 			
 		}else if (command.equals(RIGHT) && !txtArraySize.isEditable()) {
 			
-			if (mark < 9) {
+			if (mark < 9 && mark < Integer.parseInt(txtArraySize.getText())) {
 				contentOfArray[mark].setBackground(Color.white);
 				contentOfArray[mark].setForeground(Color.blue);
 				mark++;
