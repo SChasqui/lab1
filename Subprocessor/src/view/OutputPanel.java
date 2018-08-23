@@ -167,10 +167,10 @@ public class OutputPanel extends JPanel implements ActionListener{
 			}
 			
 			if (window.isActualFloat()) {
-				double[] array = window.getInArrayD();
+				double[] array = window.getOutArrayD();
 				paintArrayD(array);
 			} else {
-				int[] array = window.getInArrayI();
+				int[] array = window.getOutArrayI();
 				paintArrayI(array);
 			}
 		}

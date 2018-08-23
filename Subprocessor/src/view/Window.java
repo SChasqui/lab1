@@ -126,7 +126,7 @@ public class Window extends JFrame {
 		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
 			array.randomWithoutRepetitionOI(min, max, size);
 			inputPanel.setSize(size);
-			array.disorderByPercentageI(percentage, size);
+//			array.disorderByPercentageI(percentage, size);
 		}else {
 			throw new ImpossibleOperation("the values entered do not allow the creation of an array with the conditions proposed for the random");
 		}

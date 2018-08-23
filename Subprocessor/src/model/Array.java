@@ -105,18 +105,14 @@ public class Array {
     
     public void chooseIntAlgorithm(int[] a) {
     	
+    	int myIntArray[] = new int[a.length];
+    	outArrayI = myIntArray.clone();
     	if(a.length <= 10000) {
-    		int myIntArray[] = new int[a.length];
-    		for (int i = 0; i < a.length; i++) {
-				myIntArray[i] = (int) a[i];
-			}
-    		
 //    			outArrayI = radixsort(myIntArray, myIntArray.length);
-    			outArrayI = myIntArray.clone();
     			radixsort(outArrayI, outArrayI.length);
     	}else {
     		//INSERT THE OTHER SORTH ALGORITHMS
-    		
+    		outArrayI = mergeForInts(a);
     	}
     }
     
