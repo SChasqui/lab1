@@ -83,13 +83,19 @@ public class Window extends JFrame {
 		array.chooseDoubleAlgorithm(a);
 	}
 	
-	public void generateRandomInOrder(int max, int min, int size, boolean repetition) throws ImpossibleOperation {
+	public void generateRandomInOrder(int max, int min, int size, boolean repetition, boolean random) throws ImpossibleOperation {
 		if (inputPanel.isFloat() && !repetition && (max-min)/size > 0) {
 			array.randomWithoutRepetitionOD(min, max, size);
 			inputPanel.setSize(size);
+			if (random) {
+				array.randomizeOrderD();
+			}
 		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
 			array.randomWithoutRepetitionOI(min, max, size);
 			inputPanel.setSize(size);
+			if (random) {
+				array.randomizeOrderI();
+			}
 		}else {
 			throw new ImpossibleOperation("the values entered do not allow the creation of an array with the conditions proposed for the random");
 		}
@@ -102,7 +108,7 @@ public class Window extends JFrame {
 	}
 
 	public void generateRandomReverseOrder(int max, int min, int size, boolean repetition) throws ImpossibleOperation {
-		if (inputPanel.isFloat() && !repetition && (max-min)/size > 0) {
+		if (inputPanel.isFloat() && !repetition && (double) (max-min)/size > 0) {
 			array.randomWithoutRepetitionID(min, max, size);
 			inputPanel.setSize(size);
 		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
@@ -111,6 +117,20 @@ public class Window extends JFrame {
 		}else {
 			throw new ImpossibleOperation("the values entered do not allow the creation of an array with the conditions proposed for the random");
 		}
+	}
+
+	public void generateRandomPersentDisorder(int max, int min, int size, boolean repetition,double percentage) throws ImpossibleOperation {
+		if (inputPanel.isFloat() && !repetition && (max-min)/size > 0) {
+			array.randomWithoutRepetitionOD(min, max, size);
+			inputPanel.setSize(size);
+		}else if(!inputPanel.isFloat() && !repetition && (int)((max-min)/size) > 0){
+			array.randomWithoutRepetitionOI(min, max, size);
+			inputPanel.setSize(size);
+			array.disorderByPercentageI(percentage, size);
+		}else {
+			throw new ImpossibleOperation("the values entered do not allow the creation of an array with the conditions proposed for the random");
+		}
+		
 	}
 
 

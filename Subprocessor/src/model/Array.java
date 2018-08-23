@@ -35,6 +35,7 @@ public class Array {
 			int temp = inArrayI[index1];
 			inArrayI[index1] = inArrayI[index2];
 			inArrayI[index2] = temp;
+			num--;
 		}
 	}
 	
@@ -43,7 +44,7 @@ public class Array {
 		
 		inArrayD = new double[size];
 		
-		double interval = (max-min) / size;
+		double interval = (double) (max-min) / size;
 		
 		for (int i = 0; i < inArrayD.length; i++) {
 			inArrayD[i] =( Math.random() * interval ) + (min + (interval * i)) ;
@@ -56,10 +57,10 @@ public class Array {
 			
 			inArrayD = new double[size];
 			
-			double interval = (max-min) / size;
+			double interval = (double) (max-min) / size;
 			
-			for (int i = inArrayD.length - 1; i >= 0 ; i++) {
-				inArrayD[i - inArrayD.length - 1] =( Math.random() * interval ) + (min + (interval * i)) ;
+			for (int i = 0; i <inArrayD.length ; i++) {
+				inArrayD[inArrayD.length - 1 - i] = ( Math.random() * interval ) + (min + (interval * i)) ;
 			}
 			
 		}
@@ -84,8 +85,8 @@ public class Array {
 				
 				double interval = (max-min) / size;
 				
-				for (int i = inArrayI.length; i <= (2)*(inArrayI.length -1) ; i++) {
-					inArrayI[i - inArrayI.length] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
+				for (int i = 0; i < inArrayI.length; i++) {
+					inArrayI[(inArrayI.length - 1) - i] = (int) (( Math.random() * interval ) + (min + (interval * i))) ;
 				}
 				
 			}

@@ -123,16 +123,20 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		try {
-			if (checkInOrder.isSelected()) {
+			if (checkInOrder.isSelected() || checkRandom.isSelected()) {
 
 				window.generateRandomInOrder(Integer.parseInt(txtMaxNumber.getText()),
 						Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
-						, checkRepetition.isSelected());
+						, checkRepetition.isSelected(),checkRandom.isSelected());
 
 			}else if(checkReverse.isSelected()) {
 				window.generateRandomReverseOrder(Integer.parseInt(txtMaxNumber.getText()),
 						Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
 						, checkRepetition.isSelected());
+			}else if(Integer.parseInt(txtPercent.getText()) > 0) {
+				window.generateRandomPersentDisorder(Integer.parseInt(txtMaxNumber.getText()),
+						Integer.parseInt(txtMinNumber.getText()),Integer.parseInt(txtNumberOfElements.getText())
+						, checkRepetition.isSelected(), Double.parseDouble(txtPercent.getText()));
 			}
 		}		
 		catch (NumberFormatException | ImpossibleOperation e) {
