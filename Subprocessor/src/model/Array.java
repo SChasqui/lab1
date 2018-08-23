@@ -8,7 +8,10 @@ public class Array {
 	
 	private double[] inArrayD;
 	private double[] outArrayD;
-	private double orderPercentege;
+	private int upperLimit;
+
+	private int downLimit;
+	
 	private int[] inArrayI;
 	private int[] outArrayI;
 	
@@ -16,35 +19,12 @@ public class Array {
 		
 	}
 	
-	public void disorderByPercentageD(double percentage, int size) {
-		int num = (int) Math.round((size * (percentage/100)));
-		while (num > 0) {
-			int index1 = (int) (Math.random()*size);
-			int index2 = (int) (Math.random()*size);
-			double temp = inArrayD[index1];
-			inArrayD[index1] = inArrayD[index2];
-			inArrayD[index2] = temp;
-		}
-	}
-	
-	public void disorderByPercentageI(double percentage, int size) {
-		int num = (int) Math.round((size * (percentage/100)));
-		while (num > 0) {
-			int index1 = (int) (Math.random()*size);
-			int index2 = (int) (Math.random()*size);
-			int temp = inArrayI[index1];
-			inArrayI[index1] = inArrayI[index2];
-			inArrayI[index2] = temp;
-			num--;
-		}
-	}
-	
 	// Method that generates a random arrangement of doubles without repetition in order
 	public void randomWithoutRepetitionOD(int min, int max, int size) {
 		
 		inArrayD = new double[size];
 		
-		double interval = (double) (max-min) / size;
+		double interval = (max-min) / size;
 		
 		for (int i = 0; i < inArrayD.length; i++) {
 			inArrayD[i] =( Math.random() * interval ) + (min + (interval * i)) ;
@@ -57,10 +37,10 @@ public class Array {
 			
 			inArrayD = new double[size];
 			
-			double interval = (double) (max-min) / size;
+			double interval = (max-min) / size;
 			
-			for (int i = 0; i <inArrayD.length ; i++) {
-				inArrayD[inArrayD.length - 1 - i] = ( Math.random() * interval ) + (min + (interval * i)) ;
+			for (int i = inArrayD.length - 1; i >= 0 ; i++) {
+				inArrayD[i - inArrayD.length - 1] =( Math.random() * interval ) + (min + (interval * i)) ;
 			}
 			
 		}
@@ -85,8 +65,8 @@ public class Array {
 				
 				double interval = (max-min) / size;
 				
-				for (int i = 0; i < inArrayI.length; i++) {
-					inArrayI[(inArrayI.length - 1) - i] = (int) (( Math.random() * interval ) + (min + (interval * i))) ;
+				for (int i = inArrayI.length - 1; i >= 0 ; i++) {
+					inArrayI[i - inArrayI.length - 1] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
 				}
 				
 			}
@@ -104,7 +84,7 @@ public class Array {
 	// Randomize the Order of the int array
 		public void randomizeOrderI() {
 			for (int i = 0; i < inArrayI.length; i++) {
-				int num = (int) (Math.random() * inArrayI.length);
+				int num = (int) (Math.random() * inArrayD.length);
 				int temp = inArrayI[i];
 				inArrayI[i] = inArrayI[num];
 				inArrayI[num] = temp;
@@ -284,49 +264,59 @@ public class Array {
     
     
     ///////////////////////////////////////////////////////
-    //This is an auxiliary method to the method Merge Sort 
+    //This is an auxiliary method to the method QuickSort 
+    //that interchange the elements of array which are less than pivot selected.
     //////////////////////////////////////////////////////
-   public int partition(int arr[], int left, int right) {
-
-          int i = left, j = right;
-          int tmp;
-          int pivot = arr[(left + right) / 2];
-
-          while (i <= j) {
-             while (arr[i] < pivot)
-               i++;
-
-             while (arr[j] > pivot)
-               j--;
-
-             if (i <= j) {
-               tmp = arr[i];
-               arr[i] = arr[j];
-               arr[j] = tmp;
-                i++;
-               j--;
-             }
-          }
-    return i;
-
+   public void interchangeNumbers(int[] arr, int i, int j) {
+       int temp = arr[i];
+       arr[i] = arr[j];
+       arr[j] = temp;
     }
     
-    ////////////////////////
-    //Quick Sort
-    ////////////////////////
-  /*  public int[] quickSort() {
-        int index = partition(arr, left, right);
-
-        if (left < index - 1)
-
-              quickSort(arr, left, index - 1);
-
-        if (index < right)
-
-              quickSort(arr, index, right);
-    }  */
-    
-
+    //////////////////////////////////////
+    //This a is a main method of quicksort.
+    ///////////////////////////////////////
+   public void quick(int[] arr, int first, int last) {
+	   int i = first;
+	   int j = last;
+	   
+	   // calculate pivot number, almost always is  pivot as middle index of array
+	   int pivot = arr[first+(last-first)/2];
+	   
+	   
+	   // Divide into two arrays
+      while(i<=j) {
+           while (arr[i] < pivot) {
+               i++;
+           }
+           while (arr[j] > pivot) {
+               j--;
+           }
+           if (i <= j) {
+               interchangeNumbers(arr, i, j);
+               //move index to next position on both sides
+               i++;
+               j--;
+           }
+       }
+   
+       // call quickSort method recursively
+       if (first < j)
+           quick(arr, first, j);
+       if (i < last)
+           quick(arr, i, last);
+    } 
+   
+   
+   ///////////////////////////////////////////////////////
+   //This is an auxiliary method to the method QuickSort  
+   //who calls to recursive quick method
+   //////////////////////////////////////////////////////
+   public void sort(int[] arr) {
+       quick(arr, 0, arr.length - 1);
+   }
+   
+   
 	public double[] getInArrayD() {
 		return inArrayD;
 	}
@@ -356,4 +346,20 @@ public class Array {
 		inArrayI = new int[size];
 	}
 	
+	public int getUpperLimit() {
+		return upperLimit;
+	}
+	
+	public void setUpperLimit(int upperLimit) {
+		this.upperLimit = upperLimit;
+	}
+	
+	public int getDownLimit() {
+		return downLimit;
+	}
+	
+	public void setDownLimit(int downLimit) {
+		this.downLimit = downLimit;
+	}
+
 }
