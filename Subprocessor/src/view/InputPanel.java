@@ -166,6 +166,10 @@ public class InputPanel extends JPanel implements ActionListener{
 		txtArraySize.setEditable(false);
 	}
 	
+	public int getArraySize() {
+		return Integer.parseInt(txtArraySize.getText());
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();

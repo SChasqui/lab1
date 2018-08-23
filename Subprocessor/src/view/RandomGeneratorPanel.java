@@ -152,5 +152,8 @@ public class RandomGeneratorPanel extends JPanel implements ActionListener, Item
 		}
 		
 	}
-
+	
+//	public int actualSizeOfArray() {
+//		return Integer.parseInt(txtNumberOfElements.getText());
+//	}
 }

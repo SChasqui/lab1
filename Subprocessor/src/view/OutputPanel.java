@@ -108,12 +108,17 @@ public class OutputPanel extends JPanel implements ActionListener{
 	}
 
 	private void paintArrayI(int[] array) {
-		System.out.println(index);
-		for (int i = 0; i < contentOfArray.length ; i++) {
-			System.out.println(array[index+i]);
-			contentOfArray[i].setText(array[index+i] + "");
-			contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
-			System.out.println(index+i);
+		try {
+			
+			System.out.println(index);
+			for (int i = 0; i < contentOfArray.length ; i++) {
+				System.out.println(array[index+i]);
+				contentOfArray[i].setText(array[index+i] + "");
+				contentOfArray[i].setBorder(BorderFactory.createTitledBorder(""+(index+i)));
+				System.out.println(index+i);
+			}
+		} catch (Exception e) {
+			System.out.println("Desborde controlado");
 		}
 	}
 
@@ -151,7 +156,23 @@ public class OutputPanel extends JPanel implements ActionListener{
 			}
 
 		}else if(command.equals(RIGHT)) {
+			if (mark < 9 ) {
+				contentOfArray[mark].setBackground(Color.white);
+				contentOfArray[mark].setForeground(Color.blue);
+				mark++;
+				contentOfArray[mark].setBackground(Color.blue);
+				contentOfArray[mark].setForeground(Color.white);
+			}else {
+				index = index < window.getActualArraySize() - 10 ? index + 1 : index;
+			}
 			
+			if (window.isActualFloat()) {
+				double[] array = window.getInArrayD();
+				paintArrayD(array);
+			} else {
+				int[] array = window.getInArrayI();
+				paintArrayI(array);
+			}
 		}
 	}
 }

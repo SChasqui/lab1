@@ -8,6 +8,9 @@ public class Array {
 	
 	private double[] inArrayD;
 	private double[] outArrayD;
+	private int upperLimit;
+
+	private int downLimit;
 	
 	private int[] inArrayI;
 	private int[] outArrayI;
@@ -331,6 +334,22 @@ public class Array {
 	public void setUpArray(int size) {
 		inArrayD = new double[size];
 		inArrayI = new int[size];
+	}
+	
+	public int getUpperLimit() {
+		return upperLimit;
+	}
+	
+	public void setUpperLimit(int upperLimit) {
+		this.upperLimit = upperLimit;
+	}
+	
+	public int getDownLimit() {
+		return downLimit;
+	}
+	
+	public void setDownLimit(int downLimit) {
+		this.downLimit = downLimit;
 	}
 
 }

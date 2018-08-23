@@ -95,6 +95,11 @@ public class Window extends JFrame {
 		}
 		
 	}
+	
+	public int getActualArraySize() {
+//		return generatorPanel.get
+		return inputPanel.getArraySize();
+	}
 
 
 }
