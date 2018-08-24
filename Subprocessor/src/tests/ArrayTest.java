@@ -64,7 +64,7 @@ public class ArrayTest {
 		
 		//Testing RadixSort for small inputs
 		setupEstage1();
-		myArray.randomWithoutRepetitionOI(1, 1000000000, 9000000);
+		myArray.randomWithoutRepetitionOI(1, 1000000000, 90000000);
 		myArray.randomizeOrderI();
 		long timeStart, timeFinish, total;
 		timeStart = System.currentTimeMillis();
@@ -106,6 +106,34 @@ public class ArrayTest {
 			
 			if(i+1 < outArray.length)
 			assertTrue(outArray[i] < outArray[i+1]);
+		}
+	}
+	
+	@Test
+	void testLimitIntQuick() {
+		
+		//Testing RadixSort for small inputs
+		setupEstage1();
+		myArray.randomWithoutRepetitionOI(1, 50000, 90000);
+		myArray.randomizeOrderI();
+		
+		int[] inputArray = myArray.getInArrayI();
+		long timeStart, timeFinish, total;
+		timeStart = System.currentTimeMillis();
+		//When the input is smaller than 10000, is positive and the percentage of disroder is less than 50%, the algorithm will choose 
+		//The sort that we are testing
+		myArray.chooseAlgorithm(inputArray);
+		
+		
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+//    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
+		
+		for (int i = 0; i < myArray.getOutArrayI().length; i++) {
+			
+			if(i+1 < myArray.getOutArrayI().length)
+			assertTrue(myArray.getOutArrayI()[i] < myArray.getOutArrayI()[i+1]);
+			
 		}
 	}
 }

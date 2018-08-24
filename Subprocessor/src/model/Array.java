@@ -129,25 +129,51 @@ public class Array {
     }
     
     
-    public void chooseIntAlgorithm(int[] a) {
+    public void chooseAlgorithm(int[] a) {
     	 long timeStart, timeFinish, total;
     	 timeStart = System.currentTimeMillis();
-    	if(a.length <= 10000) {
-    			outArrayI = a;
-    			radixsort(outArrayI, outArrayI.length);
-    			algorithmUsed = RADIXSORT;
-    	}else {
-    		//INSERT THE OTHER SORTH ALGORITHMS
-    		outArrayI = mergeForInts(a);
-    		algorithmUsed = MERGESORT;
-    		
-    	}
+    	 
+    	 if(!isArrayNegative(a)) {
+    		 
+    		 if(orderPercentege > 0.4) {
+        		 if(a.length <= 10000) {
+	 	     			outArrayI = a;
+	 	     			radixsort(outArrayI, outArrayI.length);
+	 	     			algorithmUsed = RADIXSORT;
+	 	     	 }else {
+	 	     		outArrayI = mergeForInts(a);
+	 	     		algorithmUsed = MERGESORT;
+	 	     		
+	 	     	 }
+    		 }else {
+
+    			 outArrayI = inArrayI;
+    			 sortQuick(outArrayI);
+    			 algorithmUsed = QUICKSORT;
+    		 }
+
+    	 }else {
+	     		outArrayI = mergeForInts(a);
+	     		algorithmUsed = MERGESORT;
+    	 }
+
     	
     	timeFinish = System.currentTimeMillis(); 
     	total = timeFinish - timeStart;
     	timer = total;
     }
     
+	public void chooseAlgorithm(double[] a) {
+		long timeStart, timeFinish, total;
+		timeStart = System.currentTimeMillis();
+		
+		outArrayD = mergesort(a);
+		
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+    	timer = total;
+    }
+	
     public void setOutArrayD(double[] outArrayD) {
 		this.outArrayD = outArrayD;
 	}
@@ -156,9 +182,7 @@ public class Array {
 		this.outArrayI = outArrayI;
 	}
 
-	public void chooseDoubleAlgorithm(double[] a) {
-		outArrayD = mergesort(a);
-    }
+
     
     /////////////////////////////////////
     ///////////// SORT ALGORITHMS ///////
@@ -376,9 +400,29 @@ public class Array {
   //This is an auxiliary method to the method QuickSort  
   //who calls to recursive quick method
   //////////////////////////////////////////////////////
-  public void sort(int[] arr) {
+  public void sortQuick(int[] arr) {
       quick(arr, 0, arr.length - 1);
   } 
+  
+  	public boolean isArrayNegative(int[] a) {
+  		
+  		boolean someNegative = false;
+  		for (int i = 0; i < a.length; i++) {
+			if(a[i] <= 0) someNegative = true;
+		}
+  		
+  		return someNegative;
+  	}
+    
+  	public boolean isArrayNegative(double[] a) {
+  		
+  		boolean someNegative = false;
+  		for (int i = 0; i < a.length; i++) {
+			if(a[i] <= 0) someNegative = true;
+		}
+  		
+  		return someNegative;
+  	}
     
 
 	public double[] getInArrayD() {

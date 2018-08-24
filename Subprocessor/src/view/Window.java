@@ -76,11 +76,11 @@ public class Window extends JFrame {
 	}
 
 	public void sortIntInput(int[] a) {
-		array.chooseIntAlgorithm(a);
+		array.chooseAlgorithm(a);
 	}
 
 	public void sortDoubleInput(double[] a) {
-		array.chooseDoubleAlgorithm(a);
+		array.chooseAlgorithm(a);
 	}
 	
 	public void generateRandomInOrder(int max, int min, int size, boolean repetition, boolean random) throws ImpossibleOperation {
