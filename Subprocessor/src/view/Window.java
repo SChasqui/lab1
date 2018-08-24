@@ -132,6 +132,15 @@ public class Window extends JFrame {
 		}
 		
 	}
+	
+	public long getModelTimer() {
+		return array.getTimer();
+	}
+
+	public String getAlgorithmUsed() {
+		// TODO Auto-generated method stub
+		return array.getAlgorithmUsed();
+	}
 
 
 }

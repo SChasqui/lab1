@@ -27,9 +27,10 @@ public class OutputPanel extends JPanel implements ActionListener{
 	private JButton bLeft;
 	private JButton bRight;
 	private JButton bSort;
-	private JTextField txtEspacio;
+	private JTextField txtAlgorithmUsed;
 	private JTextField txtSortTime;
 	private JLabel labSortTime;
+	private JLabel labAlgorithm;
 	private JLabel[] contentOfArray;
 	private Window window;
 	
@@ -46,7 +47,6 @@ public class OutputPanel extends JPanel implements ActionListener{
 		setBorder(BorderFactory.createTitledBorder("Output"));
 		
 		auxInfoPanel = new JPanel();
-		txtEspacio = new JTextField();
 		
 		//Initializing the auixiliar panel wich is going to contain the input Array
 		auxOutputPanel = new JPanel();
@@ -87,11 +87,17 @@ public class OutputPanel extends JPanel implements ActionListener{
 		auxInfoPanel.setPreferredSize(new Dimension(100,40));
 		auxInfoPanel.setLayout(new GridLayout(1, 14));
 		labSortTime = new JLabel("Sorting time:    ");
-		txtSortTime = new JTextField("1.8");
+		labAlgorithm = new JLabel("Algorithm: ");
+		txtSortTime = new JTextField("0");
+		txtAlgorithmUsed = new JTextField();
 		auxInfoPanel.add(labSortTime);
 		auxInfoPanel.add(txtSortTime);
 		for (int i = 0; i < 11; i++) {
 			auxInfoPanel.add(new JLabel());
+			if(i == 4) {
+				auxInfoPanel.add(labAlgorithm);
+				auxInfoPanel.add(txtAlgorithmUsed);
+			}
 		}
 		auxInfoPanel.add(bSort);
 		
@@ -136,6 +142,9 @@ public class OutputPanel extends JPanel implements ActionListener{
 				paintArrayI(window.getOutArrayI());
 				
 			}
+			
+			txtSortTime.setText(" "+window.getModelTimer());
+			setAlgorithmUsed(window.getAlgorithmUsed());
 		}else if(command.equals(LEFT)) {
 			if (mark > 0) {
 				contentOfArray[mark].setBackground(Color.white);
@@ -174,5 +183,9 @@ public class OutputPanel extends JPanel implements ActionListener{
 				paintArrayI(array);
 			}
 		}
+	}
+	
+	public void setAlgorithmUsed(String s) {
+		txtAlgorithmUsed.setText(s);
 	}
 }

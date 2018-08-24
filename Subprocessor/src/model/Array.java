@@ -6,11 +6,18 @@ import javax.print.attribute.standard.OutputDeviceAssigned;
 
 public class Array {
 	
+	public final static String MERGESORT = "Merge Sort";
+	public final static String RADIXSORT = "Radix Sort";
+	public final static String QUICKSORT = "Quick Sort";
+	
 	private double[] inArrayD;
 	private double[] outArrayD;
 	private double orderPercentege;
 	private int[] inArrayI;
 	private int[] outArrayI;
+	
+	private long timer;
+	private String algorithmUsed;
 	
 	public Array() {
 		
@@ -123,18 +130,33 @@ public class Array {
     
     
     public void chooseIntAlgorithm(int[] a) {
-    	
+    	 long timeStart, timeFinish, total; //Variables para determinar el tiempo de ejecución
+    	 timeStart = System.currentTimeMillis();
     	if(a.length <= 10000) {
     			outArrayI = a;
     			radixsort(outArrayI, outArrayI.length);
+    			algorithmUsed = RADIXSORT;
     	}else {
     		//INSERT THE OTHER SORTH ALGORITHMS
     		outArrayI = mergeForInts(a);
+    		algorithmUsed = MERGESORT;
     		
     	}
+    	
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+    	timer = total;
     }
     
-    public void chooseDoubleAlgorithm(double[] a) {
+    public void setOutArrayD(double[] outArrayD) {
+		this.outArrayD = outArrayD;
+	}
+
+	public void setOutArrayI(int[] outArrayI) {
+		this.outArrayI = outArrayI;
+	}
+
+	public void chooseDoubleAlgorithm(double[] a) {
 		outArrayD = mergesort(a);
     }
     
@@ -348,6 +370,18 @@ public class Array {
 	public void setUpArray(int size) {
 		inArrayD = new double[size];
 		inArrayI = new int[size];
+	}
+	
+	public long getTimer() {
+		return timer;
+	}
+
+	public String getAlgorithmUsed() {
+		return algorithmUsed;
+	}
+
+	public void setAlgorithmUsed(String algorithmUsed) {
+		this.algorithmUsed = algorithmUsed;
 	}
 	
 }
