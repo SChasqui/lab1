@@ -130,7 +130,7 @@ public class Array {
     
     
     public void chooseIntAlgorithm(int[] a) {
-    	 long timeStart, timeFinish, total; //Variables para determinar el tiempo de ejecución
+    	 long timeStart, timeFinish, total;
     	 timeStart = System.currentTimeMillis();
     	if(a.length <= 10000) {
     			outArrayI = a;
