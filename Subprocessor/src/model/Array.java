@@ -135,22 +135,27 @@ public class Array {
     	 
     	 if(!isArrayNegative(a)) {
     		 
-    		 if(orderPercentege > 0.4) {
-        		 if(a.length <= 10000) {
-	 	     			outArrayI = a;
-	 	     			radixsort(outArrayI, outArrayI.length);
-	 	     			algorithmUsed = RADIXSORT;
-	 	     	 }else {
-	 	     		outArrayI = mergeForInts(a);
-	 	     		algorithmUsed = MERGESORT;
-	 	     		
-	 	     	 }
-    		 }else {
+    		 if(a.length <= 100000) {
+    			 
+        		 if(orderPercentege > 0.4) {
+  	     			outArrayI = a;
+  	     			radixsort(outArrayI, outArrayI.length);
+  	     			algorithmUsed = RADIXSORT;
+        		 }else {
 
-    			 outArrayI = inArrayI;
-    			 sortQuick(outArrayI);
-    			 algorithmUsed = QUICKSORT;
-    		 }
+//        			 outArrayI = inArrayI;
+        			 outArrayI = inArrayI;
+        			 quickSort(outArrayI);
+        			 algorithmUsed = QUICKSORT;
+        		 }
+
+ 	     	 }else {
+ 	     		outArrayI = mergeForInts(a);
+ 	     		algorithmUsed = MERGESORT;
+ 	     		
+ 	     	 }
+    		 
+
 
     	 }else {
 	     		outArrayI = mergeForInts(a);
@@ -361,49 +366,44 @@ public class Array {
       arr[j] = temp;
    }
    
-   //////////////////////////////////////
-   //This a is a main method of quicksort.
-   ///////////////////////////////////////
-  public void quick(int[] arr, int first, int last) {
-	   int i = first;
-	   int j = last;
-	   
-	   // calculate pivot number, almost always is  pivot as middle index of array
-	   int pivot = arr[first+(last-first)/2];
-	   
-	   
-	   // Divide into two arrays
-     while(i<=j) {
-          while (arr[i] < pivot) {
-              i++;
-          }
-          while (arr[j] > pivot) {
-              j--;
-          }
-          if (i <= j) {
-              interchangeNumbers(arr, i, j);
-              //move index to next position on both sides
-              i++;
-              j--;
-          }
-      }
-  
-      // call quickSort method recursively
-      if (first < j)
-          quick(arr, first, j);
-      if (i < last)
-          quick(arr, i, last);
-   } 
-  
-  
-  ///////////////////////////////////////////////////////
-  //This is an auxiliary method to the method QuickSort  
-  //who calls to recursive quick method
-  //////////////////////////////////////////////////////
-  public void sortQuick(int[] arr) {
-      quick(arr, 0, arr.length - 1);
-  } 
-  
+	public static void quickSort(int[] lista) {
+		quickSort(lista, 0, lista.length - 1);
+	}
+
+	private static void quickSort(int[] lista, int izquierda, int derecha) {
+		int pivote = lista[izquierda];
+		int i = izquierda;
+		int j = derecha;
+
+		while (i < j) {
+			while (lista[i] <= pivote && i < j) {
+				i++;
+			}
+			while (lista[j] > pivote) {
+				j--;
+			}
+			if (i < j) {
+				intercambiar(lista, i, j);
+			}
+		}
+
+		lista[izquierda] = lista[j];
+		lista[j] = pivote;
+
+		if (izquierda < (j - 1)) {
+			quickSort(lista, izquierda, j - 1);
+		}
+		if (j + 1 < derecha) {
+			quickSort(lista, j + 1, derecha);
+		}
+	}
+
+	private static void intercambiar(int[] lista, int a, int b) {
+		int aux = lista[a];
+		lista[a] = lista[b];
+		lista[b] = aux;
+	}
+
   	public boolean isArrayNegative(int[] a) {
   		
   		boolean someNegative = false;

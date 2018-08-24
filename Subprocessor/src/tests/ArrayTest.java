@@ -62,20 +62,24 @@ public class ArrayTest {
 	@Test
 	void testRegularIntMerge() {
 		
-		//Testing RadixSort for small inputs
 		setupEstage1();
-		myArray.randomWithoutRepetitionOI(1, 1000000000, 90000000);
+		
+		//10000 is considered as a regular entrance, since it should not have problems for sorting
+		myArray.randomWithoutRepetitionOI(1, 10000, 900);
+		//We let the generated sorted input be disordered
 		myArray.randomizeOrderI();
+		//Taking the sorting time
 		long timeStart, timeFinish, total;
 		timeStart = System.currentTimeMillis();
 		int[] inputArray = myArray.getInArrayI();
-		//When the input is smaller than 10000, the algorithm choose RadixSort (Method that we're actually testing)
+		//SOrting input
 		int[] outArray = myArray.mergeForInts(inputArray);
 		
     	timeFinish = System.currentTimeMillis(); 
     	total = timeFinish - timeStart;
-//    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
+    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
 		
+    	//Verifies if every position of the array is sorted
 		for (int i = 0; i < outArray.length; i++) {
 			
 			if(i+1 < outArray.length)
@@ -100,7 +104,7 @@ public class ArrayTest {
 		
     	timeFinish = System.currentTimeMillis(); 
     	total = timeFinish - timeStart;
-//    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
+    	System.out.println("Aprecien el poder del Merge en los límites: " + total);
 		
 		for (int i = 0; i < outArray.length; i++) {
 			
@@ -110,29 +114,56 @@ public class ArrayTest {
 	}
 	
 	@Test
-	void testLimitIntQuick() {
+	void testRegularIntQuick() {
 		
-		//Testing RadixSort for small inputs
+		//Testing QuickSort for small inputs
 		setupEstage1();
-		myArray.randomWithoutRepetitionOI(1, 50000, 90000);
+		myArray.randomWithoutRepetitionOI(1, 500, 90);
 		myArray.randomizeOrderI();
 		
 		int[] inputArray = myArray.getInArrayI();
 		long timeStart, timeFinish, total;
 		timeStart = System.currentTimeMillis();
-		//When the input is smaller than 10000, is positive and the percentage of disroder is less than 50%, the algorithm will choose 
 		//The sort that we are testing
-		myArray.chooseAlgorithm(inputArray);
+		int[] outArray = myArray.getInArrayI();
+		//Sorting the input Array
+		myArray.quickSort(outArray);
 		
 		
     	timeFinish = System.currentTimeMillis(); 
     	total = timeFinish - timeStart;
-//    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
 		
-		for (int i = 0; i < myArray.getOutArrayI().length; i++) {
+		for (int i = 0; i < outArray.length; i++) {
 			
-			if(i+1 < myArray.getOutArrayI().length)
-			assertTrue(myArray.getOutArrayI()[i] < myArray.getOutArrayI()[i+1]);
+			if(i+1 < outArray.length)
+			assertTrue(outArray[i] < outArray[i+1]);
+			
+		}
+	}
+	
+	@Test
+	void testLimitIntQuick() {
+		
+		//Testing QuickSort for big inputs for small inputs
+		setupEstage1();
+		myArray.randomWithoutRepetitionOI(1, 500000000, 900000);
+		myArray.randomizeOrderI();
+		
+		long timeStart, timeFinish, total;
+		timeStart = System.currentTimeMillis();
+		int[] outArray = myArray.getInArrayI();
+		//Sorting with Quick
+		myArray.quickSort(outArray);
+//		myArray.chooseAlgorithm(inputArray);
+		
+		
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+		
+		for (int i = 0; i < outArray.length; i++) {
+			
+			if(i+1 < outArray.length)
+			assertTrue(outArray[i] < outArray[i+1]);
 			
 		}
 	}
