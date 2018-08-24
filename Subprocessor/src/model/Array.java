@@ -327,20 +327,58 @@ public class Array {
 
     }
     
-    ////////////////////////
-    //Quick Sort
-    ////////////////////////
-  /*  public int[] quickSort() {
-        int index = partition(arr, left, right);
-
-        if (left < index - 1)
-
-              quickSort(arr, left, index - 1);
-
-        if (index < right)
-
-              quickSort(arr, index, right);
-    }  */
+   ///////////////////////////////////////////////////////
+   //This is an auxiliary method to the method QuickSort 
+   //that interchange the elements of array which are less than pivot selected.
+   //////////////////////////////////////////////////////
+  public void interchangeNumbers(int[] arr, int i, int j) {
+      int temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+   }
+   
+   //////////////////////////////////////
+   //This a is a main method of quicksort.
+   ///////////////////////////////////////
+  public void quick(int[] arr, int first, int last) {
+	   int i = first;
+	   int j = last;
+	   
+	   // calculate pivot number, almost always is  pivot as middle index of array
+	   int pivot = arr[first+(last-first)/2];
+	   
+	   
+	   // Divide into two arrays
+     while(i<=j) {
+          while (arr[i] < pivot) {
+              i++;
+          }
+          while (arr[j] > pivot) {
+              j--;
+          }
+          if (i <= j) {
+              interchangeNumbers(arr, i, j);
+              //move index to next position on both sides
+              i++;
+              j--;
+          }
+      }
+  
+      // call quickSort method recursively
+      if (first < j)
+          quick(arr, first, j);
+      if (i < last)
+          quick(arr, i, last);
+   } 
+  
+  
+  ///////////////////////////////////////////////////////
+  //This is an auxiliary method to the method QuickSort  
+  //who calls to recursive quick method
+  //////////////////////////////////////////////////////
+  public void sort(int[] arr) {
+      quick(arr, 0, arr.length - 1);
+  } 
     
 
 	public double[] getInArrayD() {
