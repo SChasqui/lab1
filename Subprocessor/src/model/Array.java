@@ -136,14 +136,14 @@ public class Array {
     	 if(!isArrayNegative(a)) {
     		 
     		 if(a.length <= 100000) {
-    			 
+  		 
         		 if(orderPercentege > 0.4) {
   	     			outArrayI = a;
   	     			radixsort(outArrayI, outArrayI.length);
   	     			algorithmUsed = RADIXSORT;
         		 }else {
 
-//        			 outArrayI = inArrayI;
+
         			 outArrayI = inArrayI;
         			 quickSort(outArrayI);
         			 algorithmUsed = QUICKSORT;

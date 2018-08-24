@@ -167,4 +167,59 @@ public class ArrayTest {
 			
 		}
 	}
+	
+	@Test
+	void testDoubles() {
+		setupEstage1();
+		
+		//10000 is considered as a regular entrance, since it should not have problems for sorting
+		myArray.randomWithoutRepetitionOD(1, 10000, 900);
+		//We let the generated sorted input be disordered
+		myArray.randomizeOrderD();
+		//Taking the sorting time
+		long timeStart, timeFinish, total;
+		timeStart = System.currentTimeMillis();
+		double[] inputArray = myArray.getInArrayD();
+		//SOrting input
+		double[] outArray = myArray.mergesort(inputArray);
+		
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
+		
+    	//Verifies if every position of the array is sorted
+		for (int i = 0; i < outArray.length; i++) {
+			
+			if(i+1 < outArray.length)
+			assertTrue(outArray[i] < outArray[i+1]);
+		}
+	}
+	
+	@Test
+	void testNegatives() {
+		setupEstage1();
+		
+		//10000 is considered as a regular entrance, since it should not have problems for sorting
+		myArray.randomWithoutRepetitionOD(-1000, 20000, 900);
+		//We let the generated sorted input be disordered
+		myArray.randomizeOrderD();
+		//Taking the sorting time
+		long timeStart, timeFinish, total;
+		timeStart = System.currentTimeMillis();
+		double[] inputArray = myArray.getInArrayD();
+		//SOrting input
+		double[] outArray = myArray.mergesort(inputArray);
+		
+    	timeFinish = System.currentTimeMillis(); 
+    	total = timeFinish - timeStart;
+    	System.out.println("Aprecien el poder de la estabilidad del Merge: " + total);
+		
+    	//Verifies if every position of the array is sorted
+		for (int i = 0; i < outArray.length; i++) {
+			
+			if(i+1 < outArray.length)
+			assertTrue(outArray[i] < outArray[i+1]);
+		}
+	}
+
 }
