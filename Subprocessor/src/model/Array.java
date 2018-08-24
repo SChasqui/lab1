@@ -85,8 +85,8 @@ public class Array {
 
 		double interval = (max-min) / size;
 
-		for (int i = inArrayI.length - 1; i >= 0 ; i++) {
-			inArrayI[i - inArrayI.length - 1] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
+		for (int i = 0; i < inArrayI.length ; i++) {
+			inArrayI[inArrayI.length - i- 1] =(int) (( Math.random() * interval ) + (min + (interval * i))) ;
 		}
 
 	}
